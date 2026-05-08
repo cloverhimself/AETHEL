@@ -17,7 +17,7 @@ export function EchelonsSection() {
           </p>
         </div>
 
-        <div className={'echelons reveal c-' + active}>
+        <div className={'echelons c-' + active}>
           <div className="echelons__tabs" role="tablist">
             {LINEAGES.map((l) => (
               <button
