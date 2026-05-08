@@ -79,7 +79,7 @@ export function LineagesSection() {
               >
                 <div className="lineage-card__glow" />
                 <div className="lineage-card__visual">
-                  <img src={lineageImages[l.id]} alt={l.name} className="lineage-card__img" />
+                  <img src={lineageImages[l.id]} alt={l.name} className="lineage-card__img" loading="lazy" decoding="async" />
                 </div>
                 <div className="lineage-card__name">{l.name}</div>
                 <div className="lineage-card__epithet">{l.epithet}</div>
