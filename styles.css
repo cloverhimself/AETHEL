@@ -1,6 +1,6 @@
 /* ============================================================
    AETHEL — Design tokens & base styles
-   Type:   Cinzel (display) · Space Grotesk (body) · JetBrains Mono (label)
+   Type:   OCR A Extended (all)
    Tone:   Dark cosmic, warm-tinted void, premium glassmorphism
    ============================================================ */
 
@@ -43,9 +43,9 @@
   --btc:         #f3a23a;
 
   /* Type */
-  --display: 'Cinzel', 'Trajan Pro', serif;
-  --body:    'Space Grotesk', 'Helvetica Neue', sans-serif;
-  --mono:    'JetBrains Mono', 'IBM Plex Mono', monospace;
+  --display: 'OCR A Extended', 'OCR-A', monospace;
+  --body:    'OCR A Extended', 'OCR-A', monospace;
+  --mono:    'OCR A Extended', 'OCR-A', monospace;
 
   /* Layout */
   --max:     1320px;
