@@ -22,6 +22,7 @@ export function LineagesSection() {
   };
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     autoplay.current = setInterval(() => {
       setActive((i) => {
         const next = (i + 1) % LINEAGES.length;
@@ -79,7 +80,7 @@ export function LineagesSection() {
               >
                 <div className="lineage-card__glow" />
                 <div className="lineage-card__visual">
-                  <img src={lineageImages[l.id]} alt={l.name} className="lineage-card__img" loading="lazy" decoding="async" />
+                  <img src={lineageImages[l.id]} alt={l.name} className="lineage-card__img" loading="lazy" decoding="async" onLoad={(e) => e.currentTarget.classList.add('is-loaded')} />
                 </div>
                 <div className="lineage-card__name">{l.name}</div>
                 <div className="lineage-card__epithet">{l.epithet}</div>

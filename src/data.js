@@ -157,6 +157,14 @@ export const ECHELONS = {
   },
 };
 
+export const TOTALS = {
+  pure:   LINEAGES.reduce((s, l) => s + l.count, 0),
+  sealed: SEALS.reduce((s, seal) => s + seal.count, 0),
+  total:  10000,
+  kings:  22,
+  btcSealed: SEALS.find(s => s.id === 'btc').count,
+};
+
 export const KINGS_LAWS = [
   { num: 'I', text: 'A King is not minted. A King is recognised by the law that already obeys it.' },
   { num: 'II', text: 'Of the ten thousand souls, only twenty-two will ever carry this seal. The number is not a target. It is a boundary the universe will not cross.' },

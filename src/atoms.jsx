@@ -20,7 +20,9 @@ export function Counter({ to, duration = 1800, prefix = '', suffix = '' }) {
   const ref = useRef(null);
   const [val, setVal] = useState(0);
   const fired = useRef(false);
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   useEffect(() => {
+    if (reducedMotion) { setVal(to); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting && !fired.current) {
@@ -53,12 +55,17 @@ export function ParticleBg() {
     let raf, w, h, particles;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    const cores = navigator.hardwareConcurrency || 4;
+    const mem = navigator.deviceMemory || 4;
+    const lowEnd = cores <= 2 || mem <= 2;
+    const maxParticles = lowEnd ? 40 : 140;
+
     const resize = () => {
       w = canvas.width = window.innerWidth * dpr;
       h = canvas.height = window.innerHeight * dpr;
       canvas.style.width = window.innerWidth + 'px';
       canvas.style.height = window.innerHeight + 'px';
-      const count = Math.min(140, Math.floor(window.innerWidth / 12));
+      const count = Math.min(maxParticles, Math.floor(window.innerWidth / (lowEnd ? 30 : 12)));
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -245,10 +252,12 @@ export function CrownSigil() {
 
 export function Typer({ text, speed = 38, startDelay = 200, className, caret = true, onDone }) {
   const ref = useRef(null);
-  const [out, setOut] = useState('');
-  const [done, setDone] = useState(false);
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const [out, setOut] = useState(reducedMotion ? text : '');
+  const [done, setDone] = useState(reducedMotion);
   const fired = useRef(false);
   useEffect(() => {
+    if (reducedMotion) { onDone && onDone(); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting && !fired.current) {

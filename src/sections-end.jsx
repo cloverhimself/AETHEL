@@ -33,7 +33,7 @@ export function GallerySection() {
           {items.map((it, i) => (
             <div key={i} className={'gallery__item c-' + it.lineage} data-label={it.label}>
               <div className="gallery__item-inner" style={{ height: it.h }}>
-                <img src={lineageImages[it.lineage]} alt={it.label} className="gallery__img" loading="lazy" decoding="async" />
+                <img src={lineageImages[it.lineage]} alt={it.label} className="gallery__img" loading="lazy" decoding="async" onLoad={(e) => e.currentTarget.classList.add('is-loaded')} />
               </div>
               <div className="gallery__glow" />
             </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { LINEAGES, SEALS, ECHELONS } from './data';
 import { LineageSigil, Typer } from './atoms';
 
@@ -80,6 +80,8 @@ export default function FindYourSoul() {
   }));
   const [done, setDone] = useState(false);
   const [revealText, setRevealText] = useState(false);
+  const overlayRef = useRef(null);
+  const triggerRef = useRef(null);
 
   const reset = () => {
     setStep(0);
@@ -102,10 +104,32 @@ export default function FindYourSoul() {
   };
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    if (!open) {
+      triggerRef.current?.focus();
+      return;
+    }
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+    const focusable = () => Array.from(
+      overlay.querySelectorAll('button, a, input, [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => !el.disabled);
+    const first = focusable()[0];
+    first?.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') { setOpen(false); return; }
+      if (e.key !== 'Tab') return;
+      const els = focusable();
+      if (!els.length) return;
+      const last = els[els.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === els[0]) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); els[0].focus(); }
+      }
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [open]);
 
   const lineageId = pickWinner({
     ignaris: scores.ignaris, serenith: scores.serenith, verdanix: scores.verdanix, noctyra: scores.noctyra, aurelion: scores.aurelion,
@@ -126,14 +150,14 @@ export default function FindYourSoul() {
               Six questions. No registration. The system maps your answers to one of the twenty echelons and tells you which form of soul you most resemble. Take it as ritual, not as judgement.
             </p>
           </div>
-          <button className="btn btn--primary" onClick={() => { reset(); setOpen(true); }} data-cursor="BEGIN">
+          <button ref={triggerRef} className="btn btn--primary" onClick={() => { reset(); setOpen(true); }} data-cursor="BEGIN">
             Begin the Mirror
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="quiz-overlay" role="dialog" aria-modal="true" aria-label="Find your soul">
+        <div ref={overlayRef} className="quiz-overlay" role="dialog" aria-modal="true" aria-label="Find your soul">
           <button className="quiz-overlay__close" onClick={() => setOpen(false)} data-cursor="CLOSE">×</button>
 
           {!done && (

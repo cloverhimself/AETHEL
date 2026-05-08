@@ -8,6 +8,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.documentElement.classList.add('has-custom-cursor');
 
     const onMove = (e) => {
@@ -15,6 +16,9 @@ export default function CustomCursor() {
       state.current.y = e.clientY;
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }
+      if (reducedMotion && ringRef.current) {
+        ringRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
     };
 
@@ -28,7 +32,7 @@ export default function CustomCursor() {
       }
       raf = requestAnimationFrame(loop);
     };
-    loop();
+    if (!reducedMotion) loop();
 
     const updateHover = (e) => {
       const t = e.target.closest('[data-cursor], a, button, .lineage-card, .seal-card, .echelon-row, .gallery__item, input, textarea, select, label');

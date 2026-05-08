@@ -1,26 +1,44 @@
 import { useState, useEffect, useRef } from 'react';
-import { LINEAGES, SEALS } from './data';
+import { LINEAGES, SEALS, TOTALS } from './data';
 import { Counter, CosmicRing, Typer, SocialIcon } from './atoms';
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const close = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [menuOpen]);
+  const close = () => setMenuOpen(false);
   return (
-    <nav className={'nav' + (scrolled ? ' is-scrolled' : '')}>
+    <nav className={'nav' + (scrolled ? ' is-scrolled' : '') + (menuOpen ? ' is-open' : '')}>
       <a href="#top" className="nav__brand">AETHEL</a>
       <div className="nav__links">
-        <a href="#souls">Souls</a>
-        <a href="#lineages">Lineages</a>
-        <a href="#rupture">Rupture</a>
-        <a href="#seals">Seals</a>
-        <a href="#kings">Kings</a>
+        <a href="#souls" onClick={close}>Souls</a>
+        <a href="#lineages" onClick={close}>Lineages</a>
+        <a href="#rupture" onClick={close}>Rupture</a>
+        <a href="#seals" onClick={close}>Seals</a>
+        <a href="#kings" onClick={close}>Kings</a>
       </div>
-      <a href="#enter" className="nav__cta">Enter ↗</a>
+      <div className="nav__right">
+        <a href="#enter" className="nav__cta">Enter ↗</a>
+        <button
+          className={'nav__burger' + (menuOpen ? ' is-open' : '')}
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          <span /><span /><span />
+        </button>
+      </div>
     </nav>
   );
 }
@@ -117,7 +135,7 @@ export function QuickExplanation() {
 }
 
 export function SoulsSupply() {
-  const total = 10000;
+  const total = TOTALS.total;
   return (
     <section className="section" id="souls" data-screen-label="03 Souls">
       <div className="shell">
@@ -136,7 +154,7 @@ export function SoulsSupply() {
                 <div className="eyebrow" style={{ marginBottom: 8 }}>Pure Souls</div>
                 <h3>The Origins</h3>
               </div>
-              <Counter to={5500} />
+              <Counter to={TOTALS.pure} />
             </div>
             <p style={{ color: 'var(--fg-3)', fontSize: 14, marginBottom: 28 }}>Souls that retained their original frequency. Unevolved, undivided, faithful to the first distinction of the void.</p>
             {LINEAGES.map((l, i) => (
@@ -158,7 +176,7 @@ export function SoulsSupply() {
                 <div className="eyebrow" style={{ marginBottom: 8 }}>Evolved Souls</div>
                 <h3>The Sealed</h3>
               </div>
-              <Counter to={4500} />
+              <Counter to={TOTALS.sealed} />
             </div>
             <p style={{ color: 'var(--fg-3)', fontSize: 14, marginBottom: 28 }}>Souls bound to a cosmic seal. Each seal is a frequency stabiliser, dictating the law by which the soul will evolve through the long descent.</p>
             {SEALS.map((s, i) => (
@@ -178,8 +196,8 @@ export function SoulsSupply() {
         <div style={{ marginTop: 'clamp(64px, 8vw, 96px)', borderTop: '1px solid var(--line)', paddingTop: 32, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--fg-3)' }} className="reveal">
           <span>Total Awakened · <span style={{ color: 'var(--gold)' }}>{total.toLocaleString()}</span></span>
           <span>Pure / Evolved · 55 / 45</span>
-          <span>Sealed of the rarest law (BTC) · 225</span>
-          <span>Aurelion Rex · <span style={{ color: 'var(--gold)' }}>22</span></span>
+          <span>Sealed of the rarest law (BTC) · {TOTALS.btcSealed}</span>
+          <span>Aurelion Rex · <span style={{ color: 'var(--gold)' }}>{TOTALS.kings}</span></span>
         </div>
       </div>
     </section>
