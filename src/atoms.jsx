@@ -175,7 +175,7 @@ export function SealSigil({ id }) {
       <g>
         <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="50" cy="50" r="38" fill="currentColor" opacity="0.08" />
-        <text x="50" y="62" textAnchor="middle" fontFamily="Cinzel, serif" fontSize="32" fill="currentColor" fontWeight="600">B</text>
+        <text x="50" y="62" textAnchor="middle" fontFamily="'OCR A Extended', 'OCR-A', monospace" fontSize="32" fill="currentColor" fontWeight="600">B</text>
         <line x1="42" y1="22" x2="42" y2="30" stroke="currentColor" strokeWidth="2" />
         <line x1="50" y1="20" x2="50" y2="28" stroke="currentColor" strokeWidth="2" />
         <line x1="42" y1="70" x2="42" y2="78" stroke="currentColor" strokeWidth="2" />
@@ -238,7 +238,7 @@ export function CrownSigil() {
       })}
       <polygon points="100,38 120,86 100,76 80,86" fill="url(#crownGold)" />
       <polygon points="100,50 110,80 100,74 90,80" fill="rgba(0,0,0,0.3)" />
-      <text x="100" y="130" textAnchor="middle" fontFamily="Cinzel, serif" fontSize="32" fontWeight="600" fill="url(#crownGold)" letterSpacing="4">XXII</text>
+      <text x="100" y="130" textAnchor="middle" fontFamily="'OCR A Extended', 'OCR-A', monospace" fontSize="32" fontWeight="600" fill="url(#crownGold)" letterSpacing="4">XXII</text>
     </svg>
   );
 }

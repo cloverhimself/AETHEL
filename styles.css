@@ -53,7 +53,7 @@
   --section: clamp(96px, 12vw, 180px);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'OCR A Extended', 'OCR-A', monospace !important; }
 
 html, body {
   background: var(--void);
