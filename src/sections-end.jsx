@@ -60,14 +60,8 @@ export function FinalCTA() {
         </div>
 
         <div className="cta__socials reveal" data-delay="4">
-          <a href="#" className="cta__social" aria-label="X">
+          <a href="https://x.com/AethelNFT" target="_blank" rel="noopener noreferrer" className="cta__social" aria-label="X">
             <SocialIcon kind="x" /><span>X / Twitter</span>
-          </a>
-          <a href="#" className="cta__social" aria-label="Telegram">
-            <SocialIcon kind="tg" /><span>Telegram</span>
-          </a>
-          <a href="#" className="cta__social" aria-label="Discord">
-            <SocialIcon kind="dc" /><span>Discord</span>
           </a>
         </div>
 
@@ -109,9 +103,7 @@ export function Footer() {
           </div>
           <div className="footer__col">
             <div className="footer__col-title">Channels</div>
-            <a href="#" className="footer__social-link"><SocialIcon kind="x" /> X / Twitter</a>
-            <a href="#" className="footer__social-link"><SocialIcon kind="tg" /> Telegram</a>
-            <a href="#" className="footer__social-link"><SocialIcon kind="dc" /> Discord</a>
+            <a href="https://x.com/AethelNFT" target="_blank" rel="noopener noreferrer" className="footer__social-link"><SocialIcon kind="x" /> X / Twitter</a>
             <a href="#">Lore Codex</a>
             <a href="#">Press</a>
           </div>

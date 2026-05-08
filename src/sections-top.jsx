@@ -79,9 +79,7 @@ export function Hero() {
         </div>
         <div className="hero__socials reveal" data-delay="4">
           <span className="hero__socials-label">FOLLOW THE AWAKENING</span>
-          <a href="#" className="hero__social" aria-label="X"><SocialIcon kind="x" /></a>
-          <a href="#" className="hero__social" aria-label="Telegram"><SocialIcon kind="tg" /></a>
-          <a href="#" className="hero__social" aria-label="Discord"><SocialIcon kind="dc" /></a>
+          <a href="https://x.com/AethelNFT" target="_blank" rel="noopener noreferrer" className="hero__social" aria-label="X"><SocialIcon kind="x" /></a>
         </div>
         <div className="hero__scroll-hint" aria-hidden="true">
           <span>SCROLL TO AWAKEN</span>
