@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { LINEAGES, ECHELONS, KINGS_LAWS } from './data';
 import { CrownSigil } from './atoms';
 import { bustImages, bustEchelonImages, kingImages, onLoad } from './assets';
@@ -74,8 +74,21 @@ export function EchelonsSection() {
 }
 
 export function KingsSection() {
+  const veilRef = useRef(null);
+  useEffect(() => {
+    const el = veilRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('is-lifted'); },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="kings" id="kings" data-screen-label="08 Kings">
+      <div className="kings__veil" ref={veilRef} aria-hidden="true" />
       <div className="kings__rays" aria-hidden="true" />
       <div className="kings__bg-visual" aria-hidden="true">
         <img src={kingImages.scale1} alt="" loading="lazy" decoding="async" onLoad={onLoad} />

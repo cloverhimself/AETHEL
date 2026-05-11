@@ -1222,9 +1222,9 @@ p { color: var(--fg-2); max-width: 60ch; }
   white-space: nowrap;
   width: max-content;
   font-family: var(--display);
-  font-size: 22px;
+  font-size: 26px;
   letter-spacing: 0.16em;
-  animation: marquee-roll 28s linear infinite;
+  animation: marquee-roll 44s linear infinite;
 }
 @keyframes marquee-roll {
   to { transform: translateX(-33.333%); }
@@ -1840,3 +1840,80 @@ p { color: var(--fg-2); max-width: 60ch; }
 
 /* Remove inner Kings CTAs cleanly */
 .kings__inner-cta { display: none; }
+
+/* Kings threshold veil */
+.kings__veil {
+  position: absolute; inset: 0;
+  z-index: 4;
+  background: var(--void);
+  opacity: 1;
+  transition: opacity 2s ease 0.3s;
+  pointer-events: none;
+}
+.kings__veil.is-lifted { opacity: 0; }
+
+/* Chapter dividers */
+.chapter-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.chapter-divider__line {
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(217,184,122,0.18), transparent);
+}
+.chapter-divider__glyph {
+  font-size: 9px;
+  color: rgba(217,184,122,0.3);
+  letter-spacing: 0;
+}
+.chapter-divider__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  white-space: nowrap;
+}
+
+/* Quiz soul statement */
+.quiz-result__statement {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(18px, 2.6vw, 26px);
+  color: var(--accent);
+  max-width: 44ch;
+  margin: 0 auto 28px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* Chronicle archive closing line */
+.chronicle__close {
+  margin-top: clamp(48px, 8vw, 80px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.chronicle__close-glyph {
+  font-size: 11px;
+  color: rgba(217,184,122,0.35);
+  display: block;
+}
+.chronicle__close p {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: var(--fg-4);
+  max-width: 48ch;
+  line-height: 1.8;
+  margin: 0 auto;
+}

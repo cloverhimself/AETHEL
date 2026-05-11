@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { LINEAGES, SEALS, TOTALS } from './data';
 import { Counter, CosmicRing, Typer, SocialIcon } from './atoms';
 import { heroImages, onLoad } from './assets';
@@ -48,6 +48,10 @@ export function Hero() {
   const auraRef = useRef(null);
   const ringRef = useRef(null);
   const torchRef = useRef(null);
+  const [heroImg] = useState(() => {
+    const keys = Object.keys(heroImages);
+    return heroImages[keys[Math.floor(Math.random() * keys.length)]];
+  });
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -78,7 +82,7 @@ export function Hero() {
       <div className="hero__aura" ref={auraRef} aria-hidden="true" />
       <div ref={ringRef} className="hero__ring-wrap"><CosmicRing /></div>
       <div className="hero__visual" aria-hidden="true">
-        <img src={heroImages.ignaris} alt="" loading="eager" decoding="async" fetchpriority="high" onLoad={onLoad} />
+        <img src={heroImg} alt="" loading="eager" decoding="async" fetchpriority="high" onLoad={onLoad} />
       </div>
       <div className="shell hero__content">
         <div className="hero__brand reveal">

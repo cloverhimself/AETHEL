@@ -41,6 +41,11 @@ export function ChronicleGate() {
           <a className="btn btn--ghost" href="#souls">View the Full Census</a>
           <a className="btn btn--ghost" href="#echelons">All Twenty Echelons</a>
         </div>
+
+        <div className="chronicle__close reveal" data-delay="3">
+          <span className="chronicle__close-glyph" aria-hidden="true">◈</span>
+          <p>You have reached the edge of what is written. The rest reveals itself to those who keep going.</p>
+        </div>
       </div>
     </section>
   );
@@ -106,20 +111,6 @@ export function FinalCTA() {
           <a href="https://x.com/AethelNFT" target="_blank" rel="noopener noreferrer" className="cta__social" aria-label="X">
             <SocialIcon kind="x" /><span>X / Twitter</span>
           </a>
-        </div>
-
-        <div className="reveal" data-delay="4" style={{ marginTop: 96, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 1, background: 'var(--line)', border: '1px solid var(--line)', maxWidth: 920, margin: '96px auto 0' }}>
-          {[
-            { k: '10,000', v: 'Souls awakened' },
-            { k: '5', v: 'Lineages of the void' },
-            { k: '4', v: 'Cosmic seals' },
-            { k: '22', v: 'Ancient Kings' },
-          ].map((s, i) => (
-            <div key={i} style={{ background: 'var(--void)', padding: '28px 20px', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--display)', fontSize: 36, letterSpacing: '0.06em', color: 'var(--gold)', marginBottom: 6 }}>{s.k}</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--fg-3)' }}>{s.v}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -65,6 +65,14 @@ const QUIZ_QUESTIONS = [
   },
 ];
 
+const SOUL_STATEMENTS = {
+  ignaris:  'You do not wait for permission to burn.',
+  serenith: 'You do not respond to the world. You set the temperature at which it responds to you.',
+  verdanix: 'You have already survived what most people are still afraid of.',
+  noctyra:  'You see more clearly than you let on. The silence is attention, not absence.',
+  aurelion: 'You have been here longer than the question. You already know how this ends.',
+};
+
 function pickWinner(scores) {
   let best = null, max = -1;
   Object.entries(scores).forEach(([k, v]) => { if (v > max) { max = v; best = k; } });
@@ -79,7 +87,7 @@ export default function FindYourSoul() {
     bnb: 0, sol: 0, eth: 0, btc: 0,
   }));
   const [done, setDone] = useState(false);
-  const [revealText, setRevealText] = useState(false);
+  const [revealStage, setRevealStage] = useState(0);
   const overlayRef = useRef(null);
   const triggerRef = useRef(null);
 
@@ -87,7 +95,7 @@ export default function FindYourSoul() {
     setStep(0);
     setScores({ ignaris: 0, serenith: 0, verdanix: 0, noctyra: 0, aurelion: 0, bnb: 0, sol: 0, eth: 0, btc: 0 });
     setDone(false);
-    setRevealText(false);
+    setRevealStage(0);
   };
 
   const choose = (a) => {
@@ -99,7 +107,10 @@ export default function FindYourSoul() {
       setStep(step + 1);
     } else {
       setDone(true);
-      setTimeout(() => setRevealText(true), 1200);
+      setTimeout(() => setRevealStage(1), 600);
+      setTimeout(() => setRevealStage(2), 1400);
+      setTimeout(() => setRevealStage(3), 3200);
+      setTimeout(() => setRevealStage(4), 5800);
     }
   };
 
@@ -188,44 +199,53 @@ export default function FindYourSoul() {
 
           {done && lineage && seal && echelon && (
             <div className={'quiz-result c-' + lineageId}>
-              <div className={'quiz-result__halo' + (revealText ? ' is-on' : '')} />
+              <div className={'quiz-result__halo' + (revealStage >= 1 ? ' is-on' : '')} />
               <div className="quiz-result__inner">
-                <div className="eyebrow">A Soul Has Recognised You</div>
-                <div className="quiz-result__sigil">
+                <div className="eyebrow" style={{ opacity: revealStage >= 1 ? 1 : 0, transition: 'opacity 1s ease' }}>A Soul Has Recognised You</div>
+                <div className="quiz-result__sigil" style={{ opacity: revealStage >= 1 ? 1 : 0, transition: 'opacity 1.2s ease 0.2s' }}>
                   <svg viewBox="0 0 100 100" style={{ color: 'var(--accent)', width: 120, height: 120 }}>
                     <LineageSigil id={lineageId} />
                   </svg>
                 </div>
-                <h2 className="quiz-result__name" style={{ color: 'var(--accent)' }}>
+                <h2 className="quiz-result__name" style={{ color: 'var(--accent)', opacity: revealStage >= 1 ? 1 : 0, transition: 'opacity 1s ease 0.4s' }}>
                   {echelon.name}
                 </h2>
-                <div className="quiz-result__epithet">{echelon.epithet}</div>
-                {revealText && (
-                  <p className="quiz-result__lore">
-                    <Typer text={echelon.lore} speed={26} startDelay={300} caret={true} />
+                <div className="quiz-result__epithet" style={{ opacity: revealStage >= 1 ? 1 : 0, transition: 'opacity 1s ease 0.6s' }}>{echelon.epithet}</div>
+                {revealStage >= 2 && (
+                  <p className="quiz-result__statement">
+                    <Typer text={SOUL_STATEMENTS[lineageId]} speed={38} startDelay={200} caret={false} />
                   </p>
                 )}
-                <div className="quiz-result__meta">
-                  <div>
-                    <span>Lineage</span>
-                    <strong style={{ color: 'var(--accent)' }}>{lineage.name}</strong>
-                    <em>{lineage.epithet}</em>
-                  </div>
-                  <div>
-                    <span>Seal</span>
-                    <strong style={{ color: 'var(--' + sealId + ')' }}>{seal.name}</strong>
-                    <em>{seal.epithet}</em>
-                  </div>
-                  <div>
-                    <span>Population</span>
-                    <strong>{echelon.count}</strong>
-                    <em>of 10,000 souls</em>
-                  </div>
-                </div>
-                <div className="quiz-result__cta">
-                  <button className="btn btn--primary" onClick={() => { reset(); }} data-cursor="AGAIN">Take it again</button>
-                  <a className="btn btn--ghost" href="#echelons" onClick={() => setOpen(false)}>See all echelons</a>
-                </div>
+                {revealStage >= 3 && (
+                  <p className="quiz-result__lore">
+                    <Typer text={echelon.lore} speed={24} startDelay={300} caret={true} />
+                  </p>
+                )}
+                {revealStage >= 4 && (
+                  <>
+                    <div className="quiz-result__meta">
+                      <div>
+                        <span>Lineage</span>
+                        <strong style={{ color: 'var(--accent)' }}>{lineage.name}</strong>
+                        <em>{lineage.epithet}</em>
+                      </div>
+                      <div>
+                        <span>Seal</span>
+                        <strong style={{ color: 'var(--' + sealId + ')' }}>{seal.name}</strong>
+                        <em>{seal.epithet}</em>
+                      </div>
+                      <div>
+                        <span>Population</span>
+                        <strong>{echelon.count}</strong>
+                        <em>of 10,000 souls</em>
+                      </div>
+                    </div>
+                    <div className="quiz-result__cta">
+                      <button className="btn btn--primary" onClick={() => { reset(); }} data-cursor="AGAIN">Take it again</button>
+                      <a className="btn btn--ghost" href="#echelons" onClick={() => setOpen(false)}>See all echelons</a>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}
