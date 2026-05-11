@@ -15,7 +15,8 @@
       "Bash(vercel --version)",
       "PowerShell(vercel --version 2>&1)",
       "PowerShell(npx vercel --version 2>&1)",
-      "Bash(node -e \"const fs = require\\('fs'\\); const c = fs.readFileSync\\('src/data.js','utf8'\\); const matches = [...c.matchAll\\(/—/g\\)]; console.log\\(matches.length + ' em dashes found'\\);\")"
+      "Bash(node -e \"const fs = require\\('fs'\\); const c = fs.readFileSync\\('src/data.js','utf8'\\); const matches = [...c.matchAll\\(/—/g\\)]; console.log\\(matches.length + ' em dashes found'\\);\")",
+      "Bash(dir \"c:\\\\Users\\\\Clover\\\\Desktop\\\\NFT \\(1\\)\\\\Assets\\\\\" 2>&1)"
     ]
   }
 }
