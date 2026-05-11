@@ -51,7 +51,7 @@ export function EchelonsSection() {
             </div>
             <div className="echelon-rows">
               {data.forms.map((f, i) => (
-                <div key={i} className="echelon-row" onClick={() => setOpen(open === i ? null : i)} style={{ '--seal': 'var(--' + f.seal.toLowerCase() + ')' }}>
+                <div key={i} className="echelon-row" role="button" tabIndex={0} onClick={() => setOpen(open === i ? null : i)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(open === i ? null : i); } }} style={{ '--seal': 'var(--' + f.seal.toLowerCase() + ')' }}>
                   <div className="echelon-row__seal" style={{ color: 'var(--' + f.seal.toLowerCase() + ')' }}>{f.seal}</div>
                   <div>
                     <div className="echelon-row__name">{f.name}</div>
