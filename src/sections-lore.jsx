@@ -148,7 +148,7 @@ export function RuptureSection() {
               <div className="rupture__title">{r.title}</div>
               <p className="rupture__body">{r.body}</p>
               <button className="rupture__expand" onClick={() => setOpen(open === i ? null : i)}>
-                {open === i ? '— Close passage' : '+ Read deeper passage'}
+                {open === i ? '- Close passage' : '+ Read deeper passage'}
               </button>
               {open === i && (
                 <div className="rupture__expand-body">{r.deep}</div>
@@ -159,7 +159,7 @@ export function RuptureSection() {
 
         <div className="reveal" style={{ marginTop: 'clamp(40px, 6vw, 64px)', textAlign: 'center' }}>
           <a className="btn btn--ghost" href="#chronicle" style={{ fontSize: 13 }}>
-            Continue the descent — all six movements ↓
+            Continue the descent · all six movements ↓
           </a>
         </div>
       </div>

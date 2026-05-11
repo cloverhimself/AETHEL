@@ -117,7 +117,7 @@ export function IdentitySection() {
             <div className="eyebrow" style={{ marginBottom: 24 }}>Chapter VI · The Inner Layer</div>
             <h2 style={{ marginBottom: 28 }}>You do not choose a soul.<br /><span className="serif-italic" style={{ color: 'var(--gold)' }}>You recognise one.</span></h2>
             <p style={{ fontSize: 17, marginBottom: 22 }}>
-              Aethel is built around psychological attachment. The goal is not for people to simply own an NFT, but to slowly recognise themselves in a soul type, a path, or an evolution.
+              Aethel is built around psychological attachment. The goal is not for people to simply hold a piece of art, but to slowly recognise themselves in a soul type, a path, or an evolution.
             </p>
             <p style={{ fontSize: 17, marginBottom: 36 }}>
               Through lore, visuals, language, behaviour, and community interaction, each person begins to discover where they naturally belong inside the system. The world is not a marketplace of pictures. It is a slow mirror.

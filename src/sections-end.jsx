@@ -24,7 +24,7 @@ export function ChronicleGate() {
               <div className="rupture__title">{r.title}</div>
               <p className="rupture__body">{r.body}</p>
               <button className="rupture__expand" onClick={() => setOpen(open === i ? null : i)}>
-                {open === i ? '— Close passage' : '+ Read deeper passage'}
+                {open === i ? '- Close passage' : '+ Read deeper passage'}
               </button>
               {open === i && <div className="rupture__expand-body">{r.deep}</div>}
             </div>
