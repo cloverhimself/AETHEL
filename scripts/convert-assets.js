@@ -15,13 +15,38 @@ const JOBS = [
   { src: 'AETHEL WEBSITE ASSETS/1. HERO VISUALS/VERDANIX SUSTAINIS.jpg',       out: 'Assets/hero-verdanix.webp',      w: 1400, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/1. HERO VISUALS/SRENITH EQUILIBRIS.jpg',       out: 'Assets/hero-serenith.webp',      w: 1400, q: 80 },
 
-  // Busts
+  // Busts — lineage level
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/IGNARIS.jpg',    out: 'Assets/bust-ignaris.webp',   w: 800, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/SERENITH.jpg',   out: 'Assets/bust-serenith.webp',  w: 800, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/VERDANIX.jpg',   out: 'Assets/bust-verdanix.webp',  w: 800, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/NOCTYRA.jpg',    out: 'Assets/bust-noctyra.webp',   w: 800, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/AURELION.jpg',   out: 'Assets/bust-aurelion.webp',  w: 800, q: 80 },
   { src: 'AETHEL WEBSITE ASSETS/2. BUST/AURELION REX.jpg', out: 'Assets/bust-aurelion-rex.webp', w: 800, q: 80 },
+
+  // Busts — echelon level (lineage × seal)
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/IGNARIS DOMINUS.jpg',  out: 'Assets/bust-ignaris-bnb.webp',   w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/IGNARIS VELOCITY.jpg', out: 'Assets/bust-ignaris-sol.webp',   w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/IGNARIS MINDFIRE.jpg', out: 'Assets/bust-ignaris-eth.webp',   w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/IGNARIS REX.jpg',      out: 'Assets/bust-ignaris-btc.webp',   w: 800, q: 80 },
+
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/SERENITH EQUILIBRIS.jpg', out: 'Assets/bust-serenith-bnb.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/SERENITH FLOWSTATE.jpg',  out: 'Assets/bust-serenith-sol.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/SERENITH MINDVEIL.jpg',   out: 'Assets/bust-serenith-eth.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/SERENITH ABSOLUS.jpg',    out: 'Assets/bust-serenith-btc.webp', w: 800, q: 80 },
+
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/VERDANIX SUSTAINIS.jpg',  out: 'Assets/bust-verdanix-bnb.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/VERDANIX REBİRTH.jpg',    out: 'Assets/bust-verdanix-sol.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/VERDANIX VISIONARY.jpg',  out: 'Assets/bust-verdanix-eth.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/VERDANIX ETERNUM.jpg',    out: 'Assets/bust-verdanix-btc.webp', w: 800, q: 80 },
+
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/NOCTYRA BURDEN.jpg',   out: 'Assets/bust-noctyra-bnb.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/NOCTYRA VERITAS.jpg',  out: 'Assets/bust-noctyra-sol.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/NOCTYRA INSIGHT.jpg',  out: 'Assets/bust-noctyra-eth.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/NOCTYRA COLLAPSE.jpg', out: 'Assets/bust-noctyra-btc.webp', w: 800, q: 80 },
+
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/AURELION PRIME.jpg', out: 'Assets/bust-aurelion-bnb.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/AURELION FLUX.jpg',  out: 'Assets/bust-aurelion-sol.webp', w: 800, q: 80 },
+  { src: 'AETHEL WEBSITE ASSETS/2. BUST/AURELION CODEX.jpg', out: 'Assets/bust-aurelion-eth.webp', w: 800, q: 80 },
 
   // Kings
   { src: 'AETHEL WEBSITE ASSETS/6. KINGS/FINAL REVEAL VISUAL.jpg',         out: 'Assets/king-final-reveal.webp', w: 900,  q: 84 },

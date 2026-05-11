@@ -78,7 +78,7 @@ export function Hero() {
       <div className="hero__aura" ref={auraRef} aria-hidden="true" />
       <div ref={ringRef} className="hero__ring-wrap"><CosmicRing /></div>
       <div className="hero__visual" aria-hidden="true">
-        <img src={heroImages.ignaris} alt="" loading="eager" decoding="async" onLoad={onLoad} />
+        <img src={heroImages.ignaris} alt="" loading="eager" decoding="async" fetchpriority="high" onLoad={onLoad} />
       </div>
       <div className="shell hero__content">
         <div className="hero__brand reveal">

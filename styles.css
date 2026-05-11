@@ -1641,10 +1641,17 @@ p { color: var(--fg-2); max-width: 60ch; }
   transition: opacity 1.4s ease;
 }
 .kings__bg-visual img.is-loaded { opacity: 0.18; }
+.kings__portraits {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 56px);
+  margin-bottom: 56px;
+}
 .kings__centrepiece {
-  width: clamp(200px, 26vw, 360px);
-  margin: 0 auto 56px;
+  width: clamp(180px, 22vw, 320px);
   position: relative;
+  flex-shrink: 0;
 }
 .kings__centrepiece img {
   width: 100%;
@@ -1661,6 +1668,31 @@ p { color: var(--fg-2); max-width: 60ch; }
   filter: blur(24px);
   z-index: -1;
   pointer-events: none;
+}
+.kings__rex-bust {
+  width: clamp(100px, 12vw, 180px);
+  flex-shrink: 0;
+  text-align: center;
+}
+.kings__rex-bust img {
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: block;
+  border: 1px solid rgba(217,184,122,0.2);
+}
+.kings__rex-bust img.is-loaded { opacity: 1; }
+.kings__rex-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-top: 10px;
+}
+@media (max-width: 600px) {
+  .kings__rex-bust { display: none; }
+  .kings__centrepiece { width: clamp(160px, 52vw, 280px); }
 }
 
 /* Echelon bust in intro panel */

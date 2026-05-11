@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { LINEAGES, ECHELONS, KINGS_LAWS } from './data';
 import { CrownSigil } from './atoms';
-import { bustImages, kingImages, onLoad } from './assets';
+import { bustImages, bustEchelonImages, kingImages, onLoad } from './assets';
 
 export function EchelonsSection() {
   const [active, setActive] = useState('ignaris');
   const [open, setOpen] = useState(null);
   const data = ECHELONS[active];
+  const echelonBustKey = open !== null ? `${active}-${data.forms[open].seal.toLowerCase()}` : null;
+  const activeBust = (echelonBustKey && bustEchelonImages[echelonBustKey]) || bustImages[active];
   return (
     <section className="section" id="echelons" data-screen-label="07 Echelons">
       <div className="shell">
@@ -43,11 +45,9 @@ export function EchelonsSection() {
                 <span>Sealed forms · 4</span>
                 <span style={{ color: 'var(--accent)' }}>Total evolutions · {data.forms.reduce((a, b) => a + b.count, 0).toLocaleString()}</span>
               </div>
-              {bustImages[active] && (
-                <div className="echelons__intro-image">
-                  <img key={active} src={bustImages[active]} alt={active} loading="lazy" decoding="async" onLoad={onLoad} />
-                </div>
-              )}
+              <div className="echelons__intro-image">
+                <img key={echelonBustKey || active} src={activeBust} alt={active} loading="lazy" decoding="async" onLoad={onLoad} />
+              </div>
             </div>
             <div className="echelon-rows">
               {data.forms.map((f, i) => (
@@ -85,8 +85,14 @@ export function KingsSection() {
           Chapter V · Aurelion Rex
         </div>
 
-        <div className="kings__centrepiece reveal" data-delay="1">
-          <img src={kingImages.finalReveal} alt="The Ancient Kings" loading="lazy" decoding="async" onLoad={onLoad} />
+        <div className="kings__portraits reveal" data-delay="1">
+          <div className="kings__centrepiece">
+            <img src={kingImages.finalReveal} alt="The Ancient Kings" loading="lazy" decoding="async" onLoad={onLoad} />
+          </div>
+          <div className="kings__rex-bust">
+            <img src={kingImages.bustRex} alt="Aurelion Rex" loading="lazy" decoding="async" onLoad={onLoad} />
+            <div className="kings__rex-label">Aurelion Rex</div>
+          </div>
         </div>
 
         <h2 className="kings__title reveal" data-delay="1">The Twenty-Two<br /><span className="serif-italic">Ancient Kings</span></h2>
