@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { LINEAGES, SEALS, TOTALS } from './data';
 import { Counter, CosmicRing, Typer, SocialIcon } from './atoms';
+import { heroImages, onLoad } from './assets';
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,14 +23,14 @@ export function Nav() {
     <nav className={'nav' + (scrolled ? ' is-scrolled' : '') + (menuOpen ? ' is-open' : '')}>
       <a href="#top" className="nav__brand">AETHEL</a>
       <div className="nav__links">
-        <a href="#souls" onClick={close}>Souls</a>
+        <a href="#identity" onClick={close}>Identity</a>
         <a href="#lineages" onClick={close}>Lineages</a>
-        <a href="#rupture" onClick={close}>Rupture</a>
         <a href="#seals" onClick={close}>Seals</a>
         <a href="#kings" onClick={close}>Kings</a>
+        <a href="#chronicle" onClick={close}>Archive</a>
       </div>
       <div className="nav__right">
-        <a href="#enter" className="nav__cta">Enter ↗</a>
+        <a href="#quiz" className="nav__cta">Discover ↗</a>
         <button
           className={'nav__burger' + (menuOpen ? ' is-open' : '')}
           onClick={() => setMenuOpen((o) => !o)}
@@ -76,24 +77,21 @@ export function Hero() {
       <div className="hero__torch" ref={torchRef} aria-hidden="true" />
       <div className="hero__aura" ref={auraRef} aria-hidden="true" />
       <div ref={ringRef} className="hero__ring-wrap"><CosmicRing /></div>
+      <div className="hero__visual" aria-hidden="true">
+        <img src={heroImages.ignaris} alt="" loading="eager" decoding="async" onLoad={onLoad} />
+      </div>
       <div className="shell hero__content">
         <div className="hero__brand reveal">
-          <Typer text="A DARK COSMIC NFT UNIVERSE · 10,000 SOULS" speed={32} startDelay={400} caret={true} />
+          <Typer text="A DARK COSMIC UNIVERSE · 10,000 SOULS" speed={32} startDelay={400} caret={true} />
         </div>
         <h1 className="hero__title reveal" data-delay="1">AETHEL</h1>
         <div className="hero__sub reveal" data-delay="2">The Awakening of 10,000 Souls</div>
         <p className="hero__desc reveal" data-delay="3">
-          A dark psychological NFT universe where identity, lore, and evolution decide what your soul becomes.
+          A cosmic mythology of ten thousand souls. Identity before ownership. Atmosphere before explanation.
         </p>
         <div className="hero__cta reveal" data-delay="4">
-          <a className="btn btn--primary" href="#enter">Enter the World</a>
-          <a className="btn btn--ghost" href="#lineages">Discover the Lineages</a>
-        </div>
-        <div className="hero__meta reveal" data-delay="4">
-          <span><strong>10,000</strong> &nbsp; SOULS</span>
-          <span><strong>5</strong> &nbsp; LINEAGES</span>
-          <span><strong>4</strong> &nbsp; SEALS</span>
-          <span><strong>22</strong> &nbsp; ANCIENT KINGS</span>
+          <a className="btn btn--primary" href="#quiz">Discover Your Soul</a>
+          <a className="btn btn--ghost" href="#lineages">Enter the Lineages</a>
         </div>
         <div className="hero__socials reveal" data-delay="4">
           <span className="hero__socials-label">FOLLOW THE AWAKENING</span>
@@ -126,7 +124,7 @@ export function QuickExplanation() {
             From the void came ten thousand souls, each shaped by emotion, sealed by cosmic law, and pulled toward evolution.
           </p>
           <p className="reveal" data-delay="2" style={{ fontSize: 18, color: 'var(--fg-2)', maxWidth: 'none', margin: '0 auto' }}>
-            Aethel is not just a collection. It is a world where holders discover what kind of soul they are becoming.
+            Aethel is not a collection. It is a world where those who enter discover what kind of soul they are becoming.
           </p>
         </div>
       </div>

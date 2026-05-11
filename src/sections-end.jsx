@@ -1,7 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SocialIcon } from './atoms';
-import { lineageImages } from './assets';
+import { lineageImages, mayaLogo, onLoad } from './assets';
+import { RUPTURE } from './data';
 import { useTweaks, TweaksPanel, TweakSection, TweakColor, TweakSelect, TweakRadio, TweakSlider } from './tweaks-panel';
+
+export function ChronicleGate() {
+  const [open, setOpen] = useState(null);
+  const deeper = RUPTURE.slice(3);
+  return (
+    <section className="chronicle" id="chronicle" data-screen-label="10 Chronicle">
+      <div className="shell">
+        <div className="chronicle__gate-label reveal">The Archive</div>
+        <h2 className="chronicle__title reveal" data-delay="1">The descent continues.<br /><span className="serif-italic">Three more movements.</span></h2>
+        <div className="chronicle__dividers reveal" data-delay="2">
+          <span>Movements 04 through 06</span>
+        </div>
+
+        <div className="rupture reveal" data-delay="2" style={{ marginBottom: 'clamp(48px, 8vw, 80px)' }}>
+          {deeper.map((r, i) => (
+            <div key={i} className="rupture__step">
+              <div className="rupture__dot" style={{ background: i === 2 ? 'var(--noctyra)' : 'var(--gold)' }} />
+              <div className="rupture__num">Movement {String(i + 4).padStart(2, '0')}</div>
+              <div className="rupture__title">{r.title}</div>
+              <p className="rupture__body">{r.body}</p>
+              <button className="rupture__expand" onClick={() => setOpen(open === i ? null : i)}>
+                {open === i ? '— Close passage' : '+ Read deeper passage'}
+              </button>
+              {open === i && <div className="rupture__expand-body">{r.deep}</div>}
+            </div>
+          ))}
+        </div>
+
+        <div className="chronicle__dividers reveal">
+          <span>Chapter I through Chapter V · Full mythology</span>
+        </div>
+        <p className="chronicle__body reveal" data-delay="1">
+          The complete architecture awaits: the five ancient essences, the nature of the seals, the twenty echelons, and the full constitution of the Twenty-Two Ancient Kings. For those who want to go all the way in.
+        </p>
+        <div className="reveal" data-delay="2" style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a className="btn btn--ghost" href="#souls">View the Full Census</a>
+          <a className="btn btn--ghost" href="#echelons">All Twenty Echelons</a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function GallerySection() {
   const items = [
@@ -55,8 +98,8 @@ export function FinalCTA() {
           Enter the world of Aethel and discover what your soul is becoming.
         </div>
         <div className="cta__buttons reveal" data-delay="3">
-          <a className="btn btn--primary" href="#">Enter the World</a>
-          <a className="btn btn--ghost" href="#">Read the Lore</a>
+          <a className="btn btn--primary" href="#quiz">Discover Your Soul</a>
+          <a className="btn btn--ghost" href="#chronicle">Enter the Archive</a>
         </div>
 
         <div className="cta__socials reveal" data-delay="4">
@@ -90,28 +133,30 @@ export function Footer() {
         <div className="footer__top">
           <div>
             <div className="footer__brand">AETHEL</div>
-            <p className="footer__desc">A dark psychological universe of ten thousand souls, five lineages, four cosmic seals, and twenty-two ancient kings. A world about identity, not ownership.</p>
+            <p className="footer__desc">A dark cosmic universe of ten thousand souls, five lineages, four cosmic seals, and twenty-two ancient kings. A world about identity, not ownership.</p>
+            <div className="footer__maya">
+              <img src={mayaLogo} alt="Maya Studio" loading="lazy" decoding="async" onLoad={onLoad} />
+              <span>A Maya Studio creation</span>
+            </div>
           </div>
           <div className="footer__col">
             <div className="footer__col-title">The World</div>
-            <a href="#souls">The 10,000 Souls</a>
+            <a href="#about">The Origin</a>
             <a href="#lineages">The Five Lineages</a>
-            <a href="#rupture">The Great Rupture</a>
             <a href="#seals">The Cosmic Seals</a>
             <a href="#echelons">Lineages and Echelons</a>
             <a href="#kings">The Ancient Kings</a>
+            <a href="#chronicle">The Archive</a>
           </div>
           <div className="footer__col">
             <div className="footer__col-title">Channels</div>
             <a href="https://x.com/AethelNFT" target="_blank" rel="noopener noreferrer" className="footer__social-link"><SocialIcon kind="x" /> X / Twitter</a>
-            <a href="#">Lore Codex</a>
-            <a href="#">Press</a>
           </div>
         </div>
         <div className="footer__bottom">
           <span>© AETHEL · MMXXVI</span>
           <span>The void observes. So do we.</span>
-          <span>v 0.1 · Awakening</span>
+          <span>Maya Studio · Awakening</span>
         </div>
       </div>
     </footer>

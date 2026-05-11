@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LINEAGES, ECHELONS, KINGS_LAWS } from './data';
 import { CrownSigil } from './atoms';
+import { bustImages, kingImages, onLoad } from './assets';
 
 export function EchelonsSection() {
   const [active, setActive] = useState('ignaris');
@@ -42,6 +43,11 @@ export function EchelonsSection() {
                 <span>Sealed forms · 4</span>
                 <span style={{ color: 'var(--accent)' }}>Total evolutions · {data.forms.reduce((a, b) => a + b.count, 0).toLocaleString()}</span>
               </div>
+              {bustImages[active] && (
+                <div className="echelons__intro-image">
+                  <img key={active} src={bustImages[active]} alt={active} loading="lazy" decoding="async" onLoad={onLoad} />
+                </div>
+              )}
             </div>
             <div className="echelon-rows">
               {data.forms.map((f, i) => (
@@ -71,24 +77,22 @@ export function KingsSection() {
   return (
     <section className="kings" id="kings" data-screen-label="08 Kings">
       <div className="kings__rays" aria-hidden="true" />
+      <div className="kings__bg-visual" aria-hidden="true">
+        <img src={kingImages.scale1} alt="" loading="lazy" decoding="async" onLoad={onLoad} />
+      </div>
       <div className="shell" style={{ position: 'relative', zIndex: 2 }}>
         <div className="reveal" style={{ textAlign: 'center', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--gold-soft)', marginBottom: 24 }}>
           Chapter V · Aurelion Rex
         </div>
 
-        <div className="kings__crown reveal" data-delay="1">
-          <CrownSigil />
+        <div className="kings__centrepiece reveal" data-delay="1">
+          <img src={kingImages.finalReveal} alt="The Ancient Kings" loading="lazy" decoding="async" onLoad={onLoad} />
         </div>
 
         <h2 className="kings__title reveal" data-delay="1">The Twenty-Two<br /><span className="serif-italic">Ancient Kings</span></h2>
 
         <div className="kings__sub reveal" data-delay="2">
           When Aurelion, the ancient lineage of time, collided with BTC, the seal of immutable authority, it did not create a rank. It created a law.
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 18, flexWrap: 'wrap' }} className="reveal" data-delay="3">
-          <a className="btn btn--primary" href="#enter">Enter the Court</a>
-          <a className="btn btn--ghost" href="#echelons">Read the Lineage</a>
         </div>
 
         <div className="kings__laws">
@@ -136,21 +140,14 @@ export function IdentitySection() {
           <div className="identity__visual reveal" data-delay="2">
             <div className="identity__visual-inner" />
             <div className="identity__visual-aura" />
-            <svg viewBox="0 0 400 500" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.7 }}>
-              <defs>
-                <radialGradient id="figureGlow" cx="50%" cy="55%" r="40%">
-                  <stop offset="0%" stopColor="rgba(245,236,214,0.4)" />
-                  <stop offset="50%" stopColor="rgba(180,150,230,0.18)" />
-                  <stop offset="100%" stopColor="rgba(0,0,0,0)" />
-                </radialGradient>
-              </defs>
-              <ellipse cx="200" cy="280" rx="120" ry="180" fill="url(#figureGlow)" />
-              <circle cx="200" cy="180" r="56" fill="rgba(245,236,214,0.12)" stroke="rgba(217,184,122,0.4)" strokeWidth="0.6" />
-              <path d="M120 250 Q200 240 280 250 L300 460 L100 460 Z" fill="rgba(0,0,0,0.4)" stroke="rgba(217,184,122,0.3)" strokeWidth="0.5" />
-              <circle cx="200" cy="180" r="80" fill="none" stroke="rgba(217,184,122,0.2)" strokeWidth="0.4" strokeDasharray="2 6" />
-              <circle cx="200" cy="180" r="100" fill="none" stroke="rgba(217,184,122,0.12)" strokeWidth="0.4" />
-            </svg>
-            <div className="identity__placeholder">Figure · Soul portrait reference</div>
+            <img
+              src={bustImages.noctyra}
+              alt="A soul portrait"
+              className="identity__bust-img"
+              loading="lazy"
+              decoding="async"
+              onLoad={onLoad}
+            />
           </div>
         </div>
       </div>

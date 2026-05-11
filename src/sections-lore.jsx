@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { LINEAGES, SEALS, RUPTURE } from './data';
 import { SealSigil } from './atoms';
-import { lineageImages } from './assets';
+import { lineageImages, sealImages, onLoad } from './assets';
 
 export function LineagesSection() {
   const [active, setActive] = useState(0);
@@ -128,6 +128,7 @@ export function LineagesSection() {
 
 export function RuptureSection() {
   const [open, setOpen] = useState(null);
+  const visible = RUPTURE.slice(0, 3);
   return (
     <section className="section" id="rupture" data-screen-label="05 Rupture">
       <div className="shell">
@@ -135,14 +136,14 @@ export function RuptureSection() {
           <div className="eyebrow reveal">Chapter II · The Great Rupture</div>
           <h2 className="section-head__title reveal" data-delay="1">From silence to matter.<br /><span className="serif-italic" style={{ color: 'var(--gold)' }}>From feeling to form.</span></h2>
           <p className="section-head__sub reveal" data-delay="2">
-            The descent of the ten thousand, in six movements. Each movement is a moment the universe became more specific, and the souls became more forgetful.
+            The descent of the ten thousand, in six movements. Three are shown here. The rest wait in the archive.
           </p>
         </div>
 
         <div className="rupture">
-          {RUPTURE.map((r, i) => (
-            <div key={i} className="rupture__step reveal" data-delay={(i % 4)}>
-              <div className="rupture__dot" style={{ background: i === 5 ? 'var(--noctyra)' : 'var(--gold)' }} />
+          {visible.map((r, i) => (
+            <div key={i} className="rupture__step reveal" data-delay={(i % 3)}>
+              <div className="rupture__dot" style={{ background: 'var(--gold)' }} />
               <div className="rupture__num">Movement {String(i + 1).padStart(2, '0')}</div>
               <div className="rupture__title">{r.title}</div>
               <p className="rupture__body">{r.body}</p>
@@ -154,6 +155,12 @@ export function RuptureSection() {
               )}
             </div>
           ))}
+        </div>
+
+        <div className="reveal" style={{ marginTop: 'clamp(40px, 6vw, 64px)', textAlign: 'center' }}>
+          <a className="btn btn--ghost" href="#chronicle" style={{ fontSize: 13 }}>
+            Continue the descent — all six movements ↓
+          </a>
         </div>
       </div>
     </section>
@@ -177,7 +184,11 @@ export function SealsSection() {
             <article key={s.id} className={'seal-card c-' + s.id}>
               <div className="seal-card__radar" />
               <div className="seal-card__chip">{s.name}</div>
-              <SealSigil id={s.id} />
+              {sealImages[s.id] && (
+                <div className="seal-card__symbol">
+                  <img src={sealImages[s.id]} alt={s.name} loading="lazy" decoding="async" onLoad={onLoad} />
+                </div>
+              )}
               <div className="seal-card__name">{s.epithet.split(' ').slice(0, 2).join(' ')}</div>
               <div className="seal-card__epithet">{s.epithet}</div>
               <p className="seal-card__body">{s.body}</p>
