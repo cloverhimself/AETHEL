@@ -4,7 +4,18 @@
       "Bash(npm install *)",
       "Bash(npm list *)",
       "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp ok'\\)\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(npx vite *)",
+      "Bash(node scripts/convert-assets.js)",
+      "Bash(sort -k5 -n)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(vercel --version)",
+      "PowerShell(vercel --version 2>&1)",
+      "PowerShell(npx vercel --version 2>&1)",
+      "Bash(node -e \"const fs = require\\('fs'\\); const c = fs.readFileSync\\('src/data.js','utf8'\\); const matches = [...c.matchAll\\(/—/g\\)]; console.log\\(matches.length + ' em dashes found'\\);\")"
     ]
   }
 }
